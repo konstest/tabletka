@@ -25,7 +25,7 @@ def input_drug_name(search_drug):
         elem.send_keys(search_drug)
         browser.find_element_by_css_selector('.btn-info').click()
     except Exception as e:
-        print(e.message)
+        print(e)
         browser.close()
         exit(1)
 
@@ -36,7 +36,9 @@ def search_all_drug_names(number_of_pagination_page=None):
     number_of_pagination_page - will use in get_list_of_all_prices_for_drug.py
     '''
     try:
-        medicaments_form_paginator_xpath = '/html/body/div[3]/div/div[1]/div[2]/ul/li/a'
+        medicaments_form_paginator_xpath = 'капилка и вы'
+        '/html/body/div[3]/div/div[1]/div[2]/ul/li/a'
+        '/html/body/div[3]/div/div[1]/div[2]/ul/li[3]/a'
         # Попытка 0(Обход кнопок пагинатора в цикле):
         medicaments = {}
         medicaments_form_paginator = browser.find_elements_by_xpath(medicaments_form_paginator_xpath)
@@ -51,8 +53,9 @@ def search_all_drug_names(number_of_pagination_page=None):
             if index < medicamets_paginator_size:
                 updated_medicaments_form_paginator[index+2].click()
     except Exception as e:
-        print(e.message)
-        browser.close()
+        print(e)
+        pprint.pprint(medicaments)
+        #browser.close()
         exit(1)
     return medicaments
 
